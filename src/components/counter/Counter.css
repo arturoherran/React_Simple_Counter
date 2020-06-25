@@ -1,5 +1,6 @@
 html {
     background-color: rgb(193, 189, 181);
+    height: inherit ;
 }
 
 .counter {
@@ -14,7 +15,7 @@ html {
     color: white;
     font-size: 200px;
     margin: 0 auto;
-    padding: 30% 10%;
+    padding: 20% 10%;
     display: block;
     width: inherit;
     max-height: 300px;
@@ -25,7 +26,7 @@ button {
     background-color: 	rgb(33, 44, 68);
     margin:  0 auto;
     padding: 1% 1%;
-    width: 100%;
+    width: 50%;
     font-size: 30px;
     color: white;
 }
