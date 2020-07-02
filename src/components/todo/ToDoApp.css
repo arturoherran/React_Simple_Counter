@@ -1,0 +1,20 @@
+.loginForm {
+    align-items: center;
+    margin: 15px auto;
+}
+
+.navbar a {
+    color: rgba(255,255,255,.5);
+
+}
+
+.navbar a:hover {
+    color:  white;
+    text-decoration: none;
+}
+
+a:hover {
+    color:  black;
+    text-decoration: none;
+    text-shadow: 20px black;
+}

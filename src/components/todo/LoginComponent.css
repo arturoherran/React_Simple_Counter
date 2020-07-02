@@ -1,0 +1,13 @@
+body{
+    margin: 5% auto;
+}
+
+.loginData, button {
+    width: 50%;
+    margin: 20px auto;
+}
+
+.greeting {
+    font-size: 2rem;
+    padding: 1%;
+}

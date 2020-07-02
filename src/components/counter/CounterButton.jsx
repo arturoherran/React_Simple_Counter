@@ -4,20 +4,6 @@ import './Counter.css';
 
 class CounterButton extends Component {
     
-    //en el constructor, definimos el estdo inicial
-    //state => counter 0
-    // constructor() {
-
-    //     super(); //llamamos super para usar this en el constructor
-    //     // this.state = {
-    //     //     counter: 0
-    //     // }
-
-    //     // this.increment = this.increment.bind(this);
-    //     // this.decrement = this.decrement.bind(this);
-    // }
-    
-
     render() {
         return (
             <div className="CounterButton">
@@ -28,23 +14,6 @@ class CounterButton extends Component {
             </div>
         );
     }
-
-    // increment() {
-    //     this.setState({
-    //         state: this.state.counter + this.props.by
-    //     })
-
-    //     this.props.incrementMethod(this.props.by);
-    // }
-
-    
-    // decrement() {
-    //     this.setState({
-    //         state: this.state.counter - this.props.by
-    //     })
-
-    //     this.props.decrementMethod(this.props.by);
-    // }
 }
 
 CounterButton.defaultProps = { 
