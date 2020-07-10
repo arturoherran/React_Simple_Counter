@@ -1,7 +1,3 @@
-body{
-    margin: 5% auto;
-}
-
 .loginData, button {
     width: 50%;
     margin: 20px auto;
@@ -10,4 +6,12 @@ body{
 .greeting {
     font-size: 2rem;
     padding: 1%;
+    margin: 3% 2%;
+}
+
+.myContainer {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
 }

@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl'
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import AuthenticationService from "./AuthenticationService.js";
 
 
 class LoginComponent extends Component {
@@ -34,7 +34,7 @@ class LoginComponent extends Component {
         //mi username es "Arturo" y mi password es "micontraseña"
         if(this.state.username === "Arturo" && this.state.password === "micontraseña" )
         {   
-            console.log(`you did it, and by the way the username is: ${this.props.username} `)
+            AuthenticationService.registerSuccesfulLogin(this.state.username,this.state.password);
             this.props.history.push(`/welcome/${this.state.username}`)  
         } 
         else 
@@ -46,10 +46,10 @@ class LoginComponent extends Component {
 
     render() {
         return (
-            <Container className="p-3">
 
-                {this.state.hasLoginFailed && <div>Invalid Credentials</div>}
-                {this.state.showSuccessMsg && <div>Login Succesful</div>}
+            <Container className="p-3" style={{marginTop: "50px"}}>
+
+                {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
 
                 <h1 className="greeting">Ingresa tus credenciales para ver tu lista</h1>
 
