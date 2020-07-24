@@ -11,8 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="App"> 
-        
-        {/* {<Counter/>} ---this is how you comment! haha without the lines --- */}
+      
         <ToDoApp/> 
 
       </div>

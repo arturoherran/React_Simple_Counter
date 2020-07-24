@@ -12,7 +12,7 @@ class HeaderComponent extends Component {
         // console.log(isUserLogged);
 
         return(
-            <nav className="navbar navbar-expand-md navbar-dark fixed-top" style={{backgroundColor: "black"}}> 
+            <nav className="navbar navbar-expand-md fixed-top" style={{backgroundColor: "white", color: "black"}}> 
                 <div className="navbar-brand"><Link to="/">What's next</Link></div> 
                     <div className="collapse navbar-collapse" id="navbarCollapse">
 

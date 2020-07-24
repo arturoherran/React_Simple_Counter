@@ -36,7 +36,7 @@ class WelcomeComponent extends Component {
                 </main>
             </div>
 
-            <div className="cover-container d-flex h-100 p-3 mx-auto flex-column">
+            {/* <div className="cover-container d-flex h-100 p-3 mx-auto flex-column">
             
                 <main role="main" className="inner cover">
                     <p className="lead">Click below to get customized welcome message</p>
@@ -46,7 +46,7 @@ class WelcomeComponent extends Component {
 
             <div className="cover-container d-flex h-100 p-3 mx-auto flex-column">
                 <p> {this.state.message}</p>
-            </div>
+            </div> */}
 
         </div>
         
@@ -67,11 +67,14 @@ class WelcomeComponent extends Component {
     }
 
     handleError(error) {
-        console.log(error.response.data.message)
-        this.setState( {
-            errorMessage: error.response.data.message, 
-            message: ""
-        } )
+        if(error){
+            console.log(error.response.data.message)
+            this.setState( {
+                errorMessage: error.response.data.message, 
+                message: ""
+            } )
+        }
+
     }
 
 }

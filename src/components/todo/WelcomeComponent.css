@@ -9,6 +9,10 @@ body {
 }
 
 .myTodos {
-    width: 80%;
     margin: 30px auto;
 }
+
+.table td{
+    vertical-align: middle;
+}
+

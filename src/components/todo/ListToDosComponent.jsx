@@ -1,30 +1,54 @@
 import "./WelcomeComponent.css"
+import TodoDataService from "../../api/todo/TodoDataService.js"
+import AuthenticationService from "./AuthenticationService.js"
 import React, { Component } from 'react'
 import Table from 'react-bootstrap/Table';
+import moment from 'moment'
 
-const DATE_OPTIONS = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+// const DATE_OPTIONS = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
 class ListToDosComponent extends Component {
-
+    
     constructor(props) {
+        console.log("constructor")
         super(props);
         this.state = {
-            todos: 
-            [
-                {id: 1, description: "Learn React JS", done: false, targetDate: (new Date()).toLocaleDateString('es-MX', DATE_OPTIONS) },
-                {id: 2, description: "Learn Spring Boot", done: false, targetDate: (new Date()).toLocaleDateString('es-MX', DATE_OPTIONS)},
-                {id: 3, description: "Practice af", done: true, targetDate: (new Date()).toLocaleDateString('es-MX', DATE_OPTIONS)}
-            ]
+            todos: [],
+            message: ''
         }
+
+        this.deleteToDo = this.deleteToDo.bind(this)
+        this.refreshToDos = this.refreshToDos.bind(this)
+        this.updateToDo = this.updateToDo.bind(this)
     }
 
+    componentDidMount() {
+        console.log("componentDidMount")
+        this.refreshToDos();
+
+    }
     
+    refreshToDos(){
+        let username = AuthenticationService.getLoggedInUser()
+        TodoDataService.retrieveAllToDos(username)
+        .then(
+            response => {
+                this.setState ({
+                    todos: response.data
+                })
+            }
+        )
+    }
 
     render() {
         return (
+            
+            <>                
+            {this.state.message && <div className="alert alert-warning"> {this.state.message}</div>}
+
             <div> 
                 <h3>Here you will be able to view and modify your To Do list  </h3> 
-                
+
                 <Table responsive striped bordered hover variant="dark" className="myTodos">
                     <thead>
                         <tr>
@@ -32,6 +56,8 @@ class ListToDosComponent extends Component {
                             <th> Description </th>
                             <th> Done </th>
                             <th> Due Date </th>
+                            <th> Delete </th>
+                            <th> Update </th>
                         </tr>
                         
                     </thead>
@@ -41,8 +67,16 @@ class ListToDosComponent extends Component {
                                 <tr key={todo.id}>
                                     <td>{todo.id}</td>
                                     <td>{todo.description}</td>
-                                    <td>{todo.done.toString()}</td>
-                                    <td>{todo.targetDate.toString()}</td>
+                                    <td>{todo.isDone.toString()}</td>
+                                    <td>{
+                                        moment(todo.targetDate).format('ddd MMM YYYY')
+                                    }</td>
+                                    <td>
+                                        <button class="btn btn-outline-danger" onClick={() => this.deleteToDo(todo.id)}>DELETE</button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-outline-success" onClick={() => this.updateToDo(todo.id)}>UPDATE</button>
+                                    </td>
                                 </tr>
                                 )
                             
@@ -50,7 +84,34 @@ class ListToDosComponent extends Component {
                     </tbody>
                 </Table>
             </div> 
+            </>
     )}
+
+    deleteToDo(id) {
+      
+        let username = AuthenticationService.getLoggedInUser();
+        TodoDataService.deleteToDo(username,id)
+        .then(
+            response => {
+                this.setState ({ message: `Item ${id} was deleted succesfully` })
+                this.refreshToDos()
+            }
+        )
+    }
+
+    updateToDo(id) {
+    
+        this.props.history.push(`/todos/${id}`)
+        // let username = AuthenticationService.getLoggedInUser();
+        // TodoDataService.deleteToDo(username,id)
+        // .then(
+        //     response => {
+        //         this.setState ({ message: `Item ${id} was deleted succesfully` })
+        //         this.refreshToDos()
+        //     }
+        // )
+    }
+
 }
 
 export default ListToDosComponent;

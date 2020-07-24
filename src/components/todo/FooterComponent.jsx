@@ -30,17 +30,17 @@ class FooterComponent extends Component {
                         <div className="col-lg-6 h-100 text-center text-lg-right my-auto">
                         <ul className="list-inline mb-0">
                             <li className="list-inline-item mr-3">
-                            <Link to="https://instagram.com/vulppesvulppes">
+                            <Link to="https://www.facebook.com/arturoherrang/">
                                 <i className="fa fa-facebook fa-2x fa-fw"></i>
                             </Link>
                             </li>
                             <li className="list-inline-item mr-3">
-                            <a href="#">
+                            <a href="https://mobile.twitter.com/El_Herran">
                                 <i className="fa fa-twitter-square fa-2x fa-fw"></i>
                             </a>
                             </li>
                             <li className="list-inline-item">
-                            <a href="#">
+                            <a href="https://instagram.com/vulppesvulppes">
                                 <i className="fa fa-instagram fa-2x fa-fw"></i>
                             </a>
                             </li>

@@ -8,7 +8,7 @@ import ListToDosComponent from './ListToDosComponent'
 import LogoutComponent from "./LogoutComponent";
 import AuthenticatedRoute from "./AuthenticatedRoute.jsx"
 import IndexComponent from "./IndexComponent.jsx"
-
+import ToDoComponent from "./ToDoComponent.jsx"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class TodoApp extends Component {
@@ -18,13 +18,14 @@ class TodoApp extends Component {
             <div className="TodoApp">
                 <Router>
                     <HeaderComponent/>
-                        <div style={{width: '80%', position: 'absolute', left: '50%', top: '40%', transform: 'translate(-50%, -50%)'}}>
+                        <div style={{width: '80%', position: 'absolute', left: '50%', top: '40%', transform: 'translate(-50%, -50%)', display: 'block'}}>
                             <Switch>                
                                 <Route path="/" exact component={IndexComponent}/>
                                 <Route path="/login" component={LoginComponent}/>
                                 <AuthenticatedRoute path="/welcome/:name" component={WelcomeComponent}/>
                                 <AuthenticatedRoute path="/List" component={ListToDosComponent}/>
                                 <AuthenticatedRoute path="/logout" exact component={LogoutComponent}/>
+                                <AuthenticatedRoute path="/todos/:id" exact component={ToDoComponent}/>
                                 <Route component={ErrorComponent}/>
                             </Switch>
                         </div>

@@ -13,15 +13,15 @@ class WelcomeComponent extends Component {
     render() {
     return (
         <div>
-            <header class="masthead text-white text-center">
-                <div class="overlay"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-9 mx-auto">
-                            <h1 class="mb-5">Welcome!</h1>
+            <header className="masthead text-center">
+                <div className="overlay"></div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-xl-9 mx-auto">
+                            <h1 className="mb-5">Welcome!</h1>
                             <p>No more losing your pending tasks, keep track of what you want to do next</p>
                         </div>
-                        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                        <div className="col-md-10 col-lg-8 col-xl-7 mx-auto">
                             <p className="lead">
                                 <Link to= "/login" className="btn btn-lg btn-secondary">Go to Login</Link>
                             </p>
