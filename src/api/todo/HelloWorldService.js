@@ -6,11 +6,34 @@ class HelloWorldService {
     }
 
     executeHelloWorldBeanService() {
-        return axios.get("http://localhost:8080/hello-world-bean");
+        let urnm = 'Arturo'
+        let password = 'micontra'
+
+        let basicAuthHeader = 'Basic ' + window.btoa(urnm + ':' + password)
+
+        return axios.get(
+            'http://localhost:8080/hello-world-bean',
+            {
+                headers: { authorization: basicAuthHeader }
+            }
+        );    
     }
 
     executeHelloWorldPathVariableService(name) {
-        return axios.get(`http://localhost:8080/hello-world/path-variable/${name}`);
+        let urnm = 'Arturo'
+        let password = 'micontra'
+
+        let basicAuthHeader = 'Basic ' + window.btoa(urnm + ':' + password)
+
+        return axios.get(
+            `http://localhost:8080/hello-world/path-variable/${name}`,
+            {
+                headers: {
+                    authorization: basicAuthHeader
+                }
+            }
+        );
+        
     }
 
 

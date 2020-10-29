@@ -19,7 +19,7 @@ class WelcomeComponent extends Component {
                     <div className="row">
                         <div className="col-xl-9 mx-auto">
                             <h1 className="mb-5">Welcome!</h1>
-                            <p>No more losing your pending tasks, keep track of what you want to do next</p>
+                            <p>No more losing track your pending tasks, know what's next</p>
                         </div>
                         <div className="col-md-10 col-lg-8 col-xl-7 mx-auto">
                             <p className="lead">

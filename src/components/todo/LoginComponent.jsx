@@ -8,10 +8,10 @@ import AuthenticationService from "./AuthenticationService.js";
 
 
 class LoginComponent extends Component {
-    
-    constructor(props){
+
+    constructor(props) {
         super(props)
-         
+
         this.state = {
             username: "",
             password: "",
@@ -23,7 +23,7 @@ class LoginComponent extends Component {
         this.loginClicked = this.loginClicked.bind(this);
     }
 
-    handleChange(event){
+    handleChange(event) {
         console.log(event.target.name + " - " + event.target.value)
         this.setState({
             [event.target.name]: event.target.value
@@ -32,22 +32,51 @@ class LoginComponent extends Component {
 
     loginClicked() {
         //mi username es "Arturo" y mi password es "micontraseña"
-        if(this.state.username === "Arturo" && this.state.password === "micontraseña" )
-        {   
-            AuthenticationService.registerSuccesfulLogin(this.state.username,this.state.password);
-            this.props.history.push(`/welcome/${this.state.username}`)  
-        } 
-        else 
+        // if (AuthenticationService.executeBasicAuthenticationService(this.state.username, this.state.password)) {
+        //     AuthenticationService.registerSuccesfulLogin(this.state.username, this.state.password);
+        //     this.props.history.push(`/welcome/${this.state.username}`)
+        // }
+        // else
+        //     this.setState({
+        //         showSuccessMsg: false,
+        //         hasLoginFailed: true
+        //     })
+
+        // AuthenticationService.executeBasicAuthenticationService(this.state.username, this.state.password)
+        //     .then(() => {
+        //         AuthenticationService.registerSuccesfulLogin(this.state.username, this.state.password);
+        //         this.props.history.push(`/welcome/${this.state.username}`)
+        //     }
+        //     ).catch(() => {
+        //         this.setState({
+        //             showSuccessMsg: false,
+        //             hasLoginFailed: true
+        //         })
+        //     }
+
+        //     )
+
+        AuthenticationService.executeJWTAuthenticationService(this.state.username, this.state.password)
+        .then((response) => {
+            AuthenticationService.registerSuccesfulLoginForJWT(this.state.username, response.data.token);
+            this.props.history.push(`/welcome/${this.state.username}`)
+        }
+        ).catch(() => {
             this.setState({
                 showSuccessMsg: false,
                 hasLoginFailed: true
             })
+        }
+
+        )
+
+
     }
 
     render() {
         return (
 
-            <Container className="p-3" style={{marginTop: "50px"}}>
+            <Container className="p-3" style={{ marginTop: "50px" }}>
 
                 {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
 
@@ -55,7 +84,7 @@ class LoginComponent extends Component {
 
                 <InputGroup className="mb-3 loginData">
                     <InputGroup.Prepend>
-                    <InputGroup.Text id="basic-addon1" >Username: </InputGroup.Text>
+                        <InputGroup.Text id="basic-addon1" >Username: </InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
                         placeholder="for example:  user123"
@@ -67,7 +96,7 @@ class LoginComponent extends Component {
 
                 <InputGroup className="mb-3 loginData">
                     <InputGroup.Prepend>
-                    <InputGroup.Text id="basic-addon1">Password: </InputGroup.Text>
+                        <InputGroup.Text id="basic-addon1">Password: </InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
                         type="password"
